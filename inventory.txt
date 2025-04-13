@@ -18,6 +18,7 @@ ansible_httpapi_headers={"Authorization": "Bearer {{ lookup('env', 'fNc6Hgddg06N
 [cisco:vars]
 ansible_network_os=cisco.ios.ios
 ansible_connection=network_cli
+ansible_user=dhia
 ansible_user=cisco
 ansible_password=cisco
 
