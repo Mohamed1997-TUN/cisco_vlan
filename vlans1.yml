@@ -1,29 +1,13 @@
 ---
-- name: Configure VLANs on Cisco Switch
+- name: Configure multiple VLANs
   hosts: cisco
   gather_facts: no
   connection: network_cli
-
-  vars:
-    vlans:
-      - id: 10
-        name: Management
-      - id: 20
-        name: Servers
-      - id: 30
-        name: Workstations
-      - id: 40
-        name: WiFi
-
   tasks:
-    - name: Ensure VLANs are configured
-      ios_vlan:
-        vlan_id: "{{ item.id }}"
-        name: "{{ item.name }}"
-        state: present
-      loop: "{{ vlans }}"
-      register: vlan_result
-
-    - name: Display VLAN configuration results
-      debug:
-        var: vlan_result
+    - name: Create VLANs 30 and 40
+      ios_config:
+        lines:
+          - vlan 30
+          - name IT
+          - vlan 40
+          - name HR
